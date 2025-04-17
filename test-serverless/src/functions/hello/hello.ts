@@ -12,10 +12,10 @@ export const handler = async (
   try {
     const path = event.rawPath;
 
-    if (path === '/') {
-      logger.info('Handling root path');
+    if (path === '/hello') {
+      logger.info('Handling /hello path');
       return lambdaResponse(200, {
-        message: 'Hello World from root Betza!',
+        message: 'Hello from path /hello!',
       });
     }
 
