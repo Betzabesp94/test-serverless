@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "strict": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "outDir": "./.build",
+    "typeRoots": ["./node_modules/@types", "./@types"]
+  },
+  "include": ["src/**/*"],
+  "types": ["jest", "node"],
+  "exclude": [
+    ".esbuild",
+    ".serverless",
+    "coverage",
+    "src/coverage",
+    "src/node_modules",
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.e2e.ts",
+    ".prettierrc.js"
+  ]
+}
