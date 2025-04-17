@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "@baselime/lambda-logger": "^0.2.2",
+    "aws-lambda": "^1.0.7",
     "express": "^4.19.2",
     "serverless-http": "^3.2.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@types/aws-lambda": "^8.10.149",
     "@types/express": "^5.0.1",
     "serverless-offline": "^14.4.0",
     "typescript": "^5.8.3"
