@@ -1,10 +1,24 @@
 api:
   handler: src/functions/helloworld/helloworld.lambdaHandler
   events:
-    - httpApi: '*'
+    - httpApi: '*' # This can remain as httpApi if no documentation is needed.
+
 hello:
   handler: src/functions/hello/hello.lambdaHandler
   events:
-    - httpApi:
-        path: /hello
+    - http:
+        path: hello
+        method: get
+        documentation:
+          summary: 'Hello endpoint'
+          description: 'Returns a greeting message'
+          responses:
+            200:
+              description: 'Greeting response with a message'
+
+docs:
+  handler: src/functions/docs/swagger.lambdaHandler
+  events:
+    - http:
+        path: docs
         method: get

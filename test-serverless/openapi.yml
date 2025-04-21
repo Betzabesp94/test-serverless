@@ -1,0 +1,15 @@
+openapi: 3.0.0
+components:
+  schemas: {}
+  securitySchemes: {}
+info:
+  title: My API
+  description: This is my awesome API
+  version: 1.0.0
+paths:
+  /hello:
+    get:
+      operationId: hello
+      summary: Hello endpoint
+      description: Returns a greeting message
+      responses: {}

@@ -5,14 +5,11 @@ import { logEventContext } from '../../middlewares/log';
 import { APIGatewayProxyEventV2, Context } from 'aws-lambda';
 import { logger } from '@baselime/lambda-logger';
 
-export const handler = async (
-  event: APIGatewayProxyEventV2,
-  context: Context,
-) => {
+export const handler = async (event: any, context: Context) => {
   try {
-    const path = event.rawPath;
+    const path = event['path'] || event.rawPath;
 
-    if (path === '/hello') {
+    if (path === '/dev/hello' || path === '/hello') {
       logger.info('Handling /hello path');
       return lambdaResponse(200, {
         message: 'Hello from path /hello!',

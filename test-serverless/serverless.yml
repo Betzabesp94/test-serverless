@@ -13,3 +13,11 @@ functions: ${file(./src/serverless-config/dev/functions.yml)}
 
 plugins:
   - serverless-offline
+  - serverless-openapi-documentation
+
+custom:
+  documentation:
+    version: '1.0.0'
+    title: 'My API'
+    description: 'This is my awesome API'
+    basePath: '/dev'
