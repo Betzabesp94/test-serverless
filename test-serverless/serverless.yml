@@ -9,16 +9,7 @@ provider:
   name: aws
   runtime: nodejs20.x
 
-functions:
-  api:
-    handler: src/functions/helloworld/helloworld.lambdaHandler
-    events:
-      - httpApi: '*'
-  hello:
-    handler: src/functions/hello/hello.lambdaHandler
-    events:
-      - httpApi:
-          path: /hello
-          method: get
+functions: ${file(./src/serverless-config/dev/functions.yml)}
+
 plugins:
   - serverless-offline
