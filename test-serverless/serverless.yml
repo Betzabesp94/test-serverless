@@ -4,6 +4,14 @@ service: test-serverless
 provider:
   name: aws
   runtime: nodejs22.x
+  httpApi:
+    authorizers:
+      customAuthorizer:
+        type: request
+        functionName: authorizerFunc
+        identitySource:
+          - $request.header.Auth
+          - $request.header.Authorization
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}
 
