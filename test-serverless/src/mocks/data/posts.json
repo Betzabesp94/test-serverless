@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "author": {
+      "userId": 1,
+      "username": "betzabesp94"
+    },
+    "title": "Understanding Serverless Architecture",
+    "body": "Serverless architecture allows developers to build and run applications without managing servers.",
+    "createdDate": "2025-04-01T10:00:00Z",
+    "publishedDate": "2025-04-02T12:00:00Z"
+  },
+  {
+    "id": 2,
+    "author": {
+      "userId": 2,
+      "username": "john_doe"
+    },
+    "title": "Getting Started with Node.js",
+    "body": "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
+    "createdDate": "2025-04-03T09:30:00Z",
+    "publishedDate": "2025-04-04T14:00:00Z"
+  },
+  {
+    "id": 3,
+    "author": {
+      "userId": 3,
+      "username": "jane_smith"
+    },
+    "title": "Introduction to AWS Lambda",
+    "body": "AWS Lambda lets you run code without provisioning or managing servers.",
+    "createdDate": "2025-04-05T11:15:00Z",
+    "publishedDate": "2025-04-06T16:00:00Z"
+  },
+  {
+    "id": 4,
+    "author": {
+      "userId": 1,
+      "username": "betzabesp94"
+    },
+    "title": "Benefits of Using Express.js",
+    "body": "Express.js is a minimal and flexible Node.js web application framework.",
+    "createdDate": "2025-04-07T08:45:00Z",
+    "publishedDate": "2025-04-08T10:00:00Z"
+  },
+  {
+    "id": 5,
+    "author": {
+      "userId": 4,
+      "username": "alex_dev"
+    },
+    "title": "What is Middleware in Node.js?",
+    "body": "Middleware functions are functions that have access to the request and response objects.",
+    "createdDate": "2025-04-09T13:00:00Z",
+    "publishedDate": "2025-04-10T15:30:00Z"
+  },
+  {
+    "id": 6,
+    "author": {
+      "userId": 1,
+      "username": "betzabesp94"
+    },
+    "title": "Understanding RESTful APIs",
+    "body": "RESTful APIs are designed around resources and use standard HTTP methods.",
+    "createdDate": "2025-04-11T07:20:00Z",
+    "publishedDate": "2025-04-12T09:00:00Z"
+  },
+  {
+    "id": 7,
+    "author": {
+      "userId": 2,
+      "username": "john_doe"
+    },
+    "title": "How to Deploy with Serverless Framework",
+    "body": "The Serverless Framework simplifies the deployment of serverless applications.",
+    "createdDate": "2025-04-13T10:10:00Z",
+    "publishedDate": "2025-04-14T11:45:00Z"
+  },
+  {
+    "id": 8,
+    "author": {
+      "userId": 5,
+      "username": "emma_coder"
+    },
+    "title": "Best Practices for Writing Clean Code",
+    "body": "Clean code is easy to read, understand, and maintain.",
+    "createdDate": "2025-04-15T12:30:00Z",
+    "publishedDate": "2025-04-16T14:00:00Z"
+  },
+  {
+    "id": 9,
+    "author": {
+      "userId": 1,
+      "username": "betzabesp94"
+    },
+    "title": "Introduction to TypeScript",
+    "body": "TypeScript is a strongly typed programming language that builds on JavaScript.",
+    "createdDate": "2025-04-17T09:00:00Z",
+    "publishedDate": "2025-04-18T10:30:00Z"
+  },
+  {
+    "id": 10,
+    "author": {
+      "userId": 3,
+      "username": "jane_smith"
+    },
+    "title": "What is Zod and How to Use It?",
+    "body": "Zod is a TypeScript-first schema declaration and validation library.",
+    "createdDate": "2025-04-19T11:45:00Z",
+    "publishedDate": "2025-04-20T13:15:00Z"
+  }
+]

@@ -2,18 +2,24 @@ import { lambdaResponse } from '../../helpers/response';
 import { logEventContext } from '../../middlewares/log';
 import { APIGatewayProxyEventV2, Context } from 'aws-lambda';
 import { logger } from '@baselime/lambda-logger';
-import { config } from '../../config';
-import { errorMiddleware } from '../../middlewares/errorHandler';
 import middy from '@middy/core';
+import { errorMiddleware } from '../../middlewares/errorHandler';
+import { BaseLogicError, ErrorCodes } from '../../common/error-codes/codes';
 
 export const handler = async (
   event: APIGatewayProxyEventV2,
   context: Context,
 ) => {
-  logger.info('Handling /hello path');
-  return lambdaResponse(200, {
-    message: 'Hello from path /hello! at: ' + config.AWS_REGION,
-  });
+  const path = event.rawPath;
+
+  if (path === '/') {
+    logger.info('Handling root path');
+    return lambdaResponse(200, {
+      message: 'Hello World from root!',
+    });
+  } else {
+    throw new BaseLogicError(ErrorCodes.NOT_FOUND, 'Page not found');
+  }
 };
 
 export const lambdaHandler = middy(handler)

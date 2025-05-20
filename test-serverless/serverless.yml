@@ -1,20 +1,10 @@
+
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: test-serverless
 
 provider:
   name: aws
   runtime: nodejs22.x
-  httpApi:
-    authorizers:
-      authAuthorizer:
-        type: request
-        functionName: authAuthorizer
-        identitySource:
-          - $request.header.Auth
-          - $request.header.Authorization
-          - $request.header.auth
-          - $request.header.authorization
-        enableSimpleResponses: true
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}
 

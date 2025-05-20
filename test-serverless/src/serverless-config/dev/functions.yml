@@ -1,5 +1,5 @@
 api:
-  handler: src/functions/helloworld/helloworld.lambdaHandler
+  handler: src/functions/root/root.lambdaHandler
   events:
     - httpApi: '*'
 hello:
@@ -8,6 +8,15 @@ hello:
     - httpApi:
         path: /hello
         method: get
-        authorizer: authAuthorizer
-authAuthorizer:
-  handler: src/functions/authorizer/authorizer.lambdaHandler
+posts:
+  handler: src/functions/posts/getPosts.lambdaHandler
+  events:
+    - httpApi:
+        path: /posts
+        method: get
+getPostById:
+  handler: src/functions/posts/getPostById.lambdaHandler
+  events:
+    - httpApi:
+        path: /posts/{id}
+        method: get

@@ -1,2 +1,8 @@
 node_modules
 .serverless
+.env
+.env*.local
+
+pg_data
+
+.build
