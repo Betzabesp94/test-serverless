@@ -8,6 +8,6 @@ hello:
     - httpApi:
         path: /hello
         method: get
-        authorizer: customAuthorizer
-authorizerFunc:
+        authorizer: authAuthorizer
+authAuthorizer:
   handler: src/functions/authorizer/authorizer.lambdaHandler

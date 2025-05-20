@@ -6,21 +6,28 @@ import {
 export const lambdaHandler = async (
   event: APIGatewayRequestAuthorizerEventV2,
 ): Promise<APIGatewaySimpleAuthorizerResult> => {
-  // Check for Auth or Authorization header
-  const authHeader =
-    event.headers?.Auth ||
-    event.headers?.Authorization ||
-    event.headers?.authorization;
+  try {
+    // Check both Auth and Authorization headers (case-insensitive)
+    const authHeader = event.headers?.['authorization'] || event.headers?.['Authorization'];
+    const altAuthHeader = event.headers?.['auth'] || event.headers?.['Auth'];
 
-  // Simple check: allow if header is present and equals 'allow', deny otherwise
-  if (authHeader && authHeader === 'allow') {
-    return {
-      isAuthorized: true,
-    };
+    const token = authHeader || altAuthHeader;
+
+    if (!token) {
+      console.log('No authorization header found');
+      return { isAuthorized: false };
+    }
+
+    // TODO: Implement proper token validation
+    // This is just an example - replace with actual token validation logic
+    if (token === 'allow') {
+      return { isAuthorized: true };
+    }
+
+    console.log('Invalid token provided');
+    return { isAuthorized: false };
+  } catch (error) {
+    console.error('Authorization error:', error);
+    return { isAuthorized: false };
   }
-
-  // Deny if header is missing or incorrect
-  return {
-    isAuthorized: false,
-  };
 };

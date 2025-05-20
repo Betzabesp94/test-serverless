@@ -6,12 +6,15 @@ provider:
   runtime: nodejs22.x
   httpApi:
     authorizers:
-      customAuthorizer:
+      authAuthorizer:
         type: request
-        functionName: authorizerFunc
+        functionName: authAuthorizer
         identitySource:
           - $request.header.Auth
           - $request.header.Authorization
+          - $request.header.auth
+          - $request.header.authorization
+        enableSimpleResponses: true
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}
 
