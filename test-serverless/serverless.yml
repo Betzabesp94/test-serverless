@@ -1,10 +1,30 @@
-
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: test-serverless
 
 provider:
   name: aws
   runtime: nodejs22.x
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}
+    PORT: 3000
+    LOG_LEVEL: info
+  httpApi:
+    authorizers:
+      customAuthorizer:
+        type: request
+        functionName: authorizerFunc
+        simpleResponse: true
+        identitySource:
+        - $request.header.Auth
+        - $request.header.Authorization
+        - $request.header.auth
+        - $request.header.authorization
+      #clerkAuthorizer:
+      #  type: jwt
+      #  identitySource: $request.header.Authorization
+      #  issuerUrl: ${env:CLERK_ISSUER_URL}
+      #  audience:
+      #    - ${env:CLERK_APP_ID}
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}
 

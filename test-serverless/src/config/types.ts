@@ -10,12 +10,10 @@ export enum EnvStages {
 }
 
 export const ConfigSchema = z.object({
-  // The port on which the server will run
-  PORT: z.coerce.number(),
-  //  The AWS region for the application
-  AWS_REGION: z.string(),
-  // NODE_ENV: z.enum(['dev', 'production', 'test']).default('dev'),
-  NODE_ENV: z.enum(Object.values(EnvStages) as [EnvStages, ...EnvStages[]]),
+  // Make PORT optional with a default value
+  PORT: z.coerce.number().optional().default(3000),
+  // Make NODE_ENV optional with a default value
+  NODE_ENV: z.enum(Object.values(EnvStages) as [EnvStages, ...EnvStages[]]).default(EnvStages.DEV),
   // Log level for the application
   LOG_LEVEL: z.enum(['info', 'debug', 'warn', 'error']).default('info'),
   // Sentry DSN for error tracking
