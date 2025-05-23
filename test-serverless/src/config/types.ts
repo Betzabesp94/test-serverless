@@ -18,6 +18,8 @@ export const ConfigSchema = z.object({
   LOG_LEVEL: z.enum(['info', 'debug', 'warn', 'error']).default('info'),
   // Sentry DSN for error tracking
   SENTRY_DSN: z.string().optional(),
+  // Clerk PEM public key for JWT validation
+  CLERK_PEM_PUBLIC_KEY: z.string().optional(),
 });
 
 export const EnvStagesList = Object.values(EnvStages);

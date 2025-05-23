@@ -6,8 +6,8 @@ provider:
   runtime: nodejs22.x
   environment:
     NODE_ENV: ${opt:stage, 'dev'}
-    PORT: 3000
-    LOG_LEVEL: info
+    CLERK_PEM_PUBLIC_KEY: ${env:CLERK_PEM_PUBLIC_KEY}
+    LOG_LEVEL: ${env:LOG_LEVEL, 'info'}
   httpApi:
     authorizers:
       customAuthorizer:
@@ -19,14 +19,16 @@ provider:
         - $request.header.Authorization
         - $request.header.auth
         - $request.header.authorization
-      #clerkAuthorizer:
-      #  type: jwt
-      #  identitySource: $request.header.Authorization
-      #  issuerUrl: ${env:CLERK_ISSUER_URL}
-      #  audience:
-      #    - ${env:CLERK_APP_ID}
+
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}
 
 plugins:
   - serverless-offline
+
+custom: 
+  serverless-offline:
+    httpPort: ${env:PORT, 3001} # To use the param port white ${self:custom.myParams.PORT, 3001}
+  myParams:
+    PORT: 3005
+

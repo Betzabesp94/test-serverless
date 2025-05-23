@@ -12,7 +12,7 @@ export const handler = async (
 ) => {
   logger.info('Handling /hello path');
   return lambdaResponse(200, {
-    message: 'Hello from path /hello! at: ' + config.AWS_REGION,
+    message: 'Hello from path /hello!',
   });
 };
 

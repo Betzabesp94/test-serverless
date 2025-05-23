@@ -16,3 +16,8 @@ export type PostBody = {
   title: string;
   body: string;
 };
+
+export interface IClerkJwtClaims {
+  sub: string;
+  [key: string]: any;
+}
