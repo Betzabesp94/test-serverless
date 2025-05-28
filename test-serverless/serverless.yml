@@ -15,10 +15,7 @@ provider:
         functionName: authorizerFunc
         simpleResponse: true
         identitySource:
-        - $request.header.Auth
-        - $request.header.Authorization
-        - $request.header.auth
-        - $request.header.authorization
+          - $request.header.Authorization
 
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}

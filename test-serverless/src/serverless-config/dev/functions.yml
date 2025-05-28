@@ -23,10 +23,6 @@ posts:
         method: get
         authorizer:
           name: customAuthorizer
-        #  name: clerkAuthorizer
-        #  scopes:
-        #    - user.id
-        #    - user.email
 getPostById:
   handler: src/functions/posts/getPostById.lambdaHandler
   events:
