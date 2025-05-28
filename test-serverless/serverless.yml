@@ -16,6 +16,7 @@ provider:
         simpleResponse: true
         identitySource:
           - $request.header.Authorization
+          - $request.header.authorization
 
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}

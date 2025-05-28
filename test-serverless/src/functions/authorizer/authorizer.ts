@@ -17,11 +17,13 @@ import { errorMiddleware } from '../../middlewares/errorHandler';
   try {
 
     // Extract the Authorization header (case-insensitive)
-    const authHeader = event.headers?.Authorization
+    // Check for both lowercase and uppercase header keys
+    const authHeader = event.headers?.authorization || event.headers?.Authorization;
 
     logger.info(`Auth header: ${authHeader || 'No auth header found'}`);
+    logger.info('All headers:', event.headers); // Add this line for debugging
 
-    if (!authHeader || (!authHeader && !authHeader.startsWith('Bearer '))) {
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
       logger.info('Unauthorized: Missing or invalid Authorization header');
       return { isAuthorized: false };
     }
