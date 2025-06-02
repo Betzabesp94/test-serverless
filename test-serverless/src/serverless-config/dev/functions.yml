@@ -1,10 +1,33 @@
 api:
-  handler: src/functions/helloworld/helloworld.lambdaHandler
+  handler: src/functions/root/root.lambdaHandler
   events:
     - httpApi: '*'
+authorizerFunc:
+  handler: src/functions/authorizer/authorizer.lambdaHandler
+  events:
+    - httpApi:
+        path: /authorizer
+        method: get
 hello:
   handler: src/functions/hello/hello.lambdaHandler
   events:
     - httpApi:
         path: /hello
         method: get
+
+posts:
+  handler: src/functions/posts/getPosts.lambdaHandler
+  events:
+    - httpApi:
+        path: /posts
+        method: get
+        authorizer:
+          name: customAuthorizer
+getPostById:
+  handler: src/functions/posts/getPostById.lambdaHandler
+  events:
+    - httpApi:
+        path: /posts/{id}
+        method: get
+
+

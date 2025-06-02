@@ -13,18 +13,35 @@ authorAvatar: 'https://avatars1.githubusercontent.com/u/13742415?s=200&v=4'
 
 # Serverless Framework Node Express API on AWS
 
-This template demonstrates how to develop and deploy a simple Node Express API service running on AWS Lambda using the Serverless Framework.
+This is a **Serverless Boilerplate** aimed to improve development by providing a ready-to-use template for building and deploying a Node.js Express API on AWS Lambda using the Serverless Framework. It simplifies the process of setting up a serverless application and accelerates development.
 
-This template configures a single function, `api`, which is responsible for handling all incoming requests using the `httpApi` event. To learn more about `httpApi` event configuration options, please refer to [httpApi event docs](https://www.serverless.com/framework/docs/providers/aws/events/http-api/). As the event is configured in a way to accept all incoming requests, the Express.js framework is responsible for routing and handling requests internally. This implementation uses the `serverless-http` package to transform the incoming event request payloads to payloads compatible with Express.js. To learn more about `serverless-http`, please refer to the [serverless-http README](https://github.com/dougmoscrop/serverless-http).
+This template configures a single function, `api`, which handles all incoming requests using the `httpApi` event. The Express.js framework is used for routing and handling requests internally, with the help of the `serverless-http` package. For more details, refer to the [serverless-http README](https://github.com/dougmoscrop/serverless-http).
 
 ## Usage
 
-### Deployment
+### Quick Start
 
 Install dependencies with:
 
 ```
 npm install
+```
+
+To test locally run
+
+```
+serverless offline
+```
+
+if you want to deploy, first make sure you have your aws credentials set, if not follow the example of .env.example creating the .env and fill the variables
+
+```
+# Aws access key id
+AWS_ACCESS_KEY_ID=EXAMPLEKEYID
+# Aws secret key
+AWS_SECRET_ACCESS_KEY=EXAMPLESECRETKEY
+# Aws region
+AWS_REGION=us-east-1
 ```
 
 and then deploy with:
@@ -36,13 +53,13 @@ serverless deploy
 After running deploy, you should see output similar to:
 
 ```
-Deploying "aws-node-express-api" to stage "dev" (us-east-1)
+Deploying "test-serverless" to stage "dev" (us-east-1)
 
-✔ Service deployed to stack aws-node-express-api-dev (96s)
+✔ Service deployed to stack test-serverless-dev (96s)
 
 endpoint: ANY - https://xxxxxxxxxx.execute-api.us-east-1.amazonaws.com
 functions:
-  api: aws-node-express-api-dev-api (2.3 kB)
+  api: test-serverless-dev-api (2.3 kB)
 ```
 
 _Note_: In current form, after deployment, your API is public and can be invoked by anyone. For production deployments, you might want to configure an authorizer. For details on how to do that, refer to [`httpApi` event docs](https://www.serverless.com/framework/docs/providers/aws/events/http-api/).
@@ -61,16 +78,72 @@ Which should result in the following response:
 { "message": "Hello from root!" }
 ```
 
-### Local development
+### Using Serverless Offline
 
-The easiest way to develop and test your function is to use the `dev` command:
+For local development, you can use the `serverless-offline` plugin to emulate AWS Lambda locally. Follow these steps:
 
-```
-serverless dev
-```
+1. Start the local server:
 
-This will start a local emulator of AWS Lambda and tunnel your requests to and from AWS Lambda, allowing you to interact with your function as if it were running in the cloud.
+   ```
+   serverless offline
+   ```
 
-Now you can invoke the function as before, but this time the function will be executed locally. Now you can develop your function locally, invoke it, and see the results immediately without having to re-deploy.
+   This will start a local server that emulates your API. You can now make requests to `http://localhost:3000` (or the port specified in your configuration).
 
-When you are done developing, don't forget to run `serverless deploy` to deploy the function to the cloud.
+## Contribution Guidelines
+
+We welcome contributions to this project! To contribute, please follow these steps:
+
+1. Fork the repository and create a new branch for your feature or bug fix.
+2. Make your changes and ensure that the code is properly formatted and linted.
+3. Write tests for your changes, if applicable.
+4. Submit a pull request with a clear description of your changes and the problem they solve.
+
+## Environment Variables
+
+This project uses environment variables to configure the application. Follow these steps to set them up:
+
+1. **Environment Files Location**:
+
+   - Most environment variables are set in the `/envfiles` folder.
+   - The structure follows the convention `/envfiles/{stage}.env`, where `{stage}` represents the deployment stage (e.g., `development`, `production`).
+   - Public variables should be defined in these `{stage}.env` files.
+
+2. **Secrets Management**:
+
+   - Secrets should follow the convention `/envfiles/{stage}.secret.env`.
+   - These files are used to store sensitive information like API keys, database credentials, etc.
+
+3. **AWS Credentials**:
+
+   - In the root of the project, you can create a `.env` file to set up AWS credentials if you plan to deploy to AWS.
+   - Follow the example provided in `.env.example`:
+     ```bash
+     # AWS access key ID
+     AWS_ACCESS_KEY_ID=EXAMPLEKEYID
+     # AWS secret access key
+     AWS_SECRET_ACCESS_KEY=EXAMPLESECRETKEY
+     # AWS region
+     AWS_REGION=us-east-1
+     ```
+
+4. **Steps to Set Up**:
+
+   - Copy the `.env.example` file to `.env` in the root directory:
+     ```bash
+     cp .env.example .env
+     ```
+   - Update the values in the `.env` file as needed for AWS credentials.
+   - Add the appropriate `{stage}.env` and `{stage}.secret.env` files in the `/envfiles` folder for your specific stage.
+
+5. **Automatic Loading**:
+   - The application will automatically load these variables based on the stage specified in the `STAGE` environment variable.
+   - For example, if `STAGE=development`, the application will load `/envfiles/development.env` and `/envfiles/development.secret.env`.
+
+By following this structure, you can manage public and secret environment variables effectively while keeping sensitive information secure.
+
+### Code of Conduct
+
+Please adhere to the [Contributor Covenant Code of Conduct](https://www.contributor-covenant.org/version/2/0/code_of_conduct/) when contributing to this project.
+
+Thank you for contributing!

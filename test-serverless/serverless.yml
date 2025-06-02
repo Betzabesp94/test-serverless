@@ -1,15 +1,32 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: betzabesp94
-# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
-app: serverlessapp
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: test-serverless
 
 provider:
   name: aws
-  runtime: nodejs20.x
+  runtime: nodejs22.x
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}
+    CLERK_PEM_PUBLIC_KEY: ${env:CLERK_PEM_PUBLIC_KEY}
+    LOG_LEVEL: ${env:LOG_LEVEL, 'info'}
+  httpApi:
+    authorizers:
+      customAuthorizer:
+        type: request
+        functionName: authorizerFunc
+        simpleResponse: true
+        identitySource:
+          - $request.header.Authorization
+          - $request.header.authorization
+
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}
 
 plugins:
   - serverless-offline
+
+custom: 
+  serverless-offline:
+    httpPort: ${env:PORT, 3001} # To use the param port white ${self:custom.myParams.PORT, 3001}
+  myParams:
+    PORT: 3005
+
