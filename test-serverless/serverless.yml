@@ -8,15 +8,30 @@ provider:
     NODE_ENV: ${opt:stage, 'dev'}
     CLERK_PEM_PUBLIC_KEY: ${env:CLERK_PEM_PUBLIC_KEY}
     LOG_LEVEL: ${env:LOG_LEVEL, 'info'}
+    JWT_SECRET: ${env:JWT_SECRET}
+    IS_OFFLINE: ${env:IS_OFFLINE, 'false'}
+    OFFLINE_AWS_REGION: ${env:OFFLINE_AWS_REGION, 'us-east-1'}
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - secretsmanager:GetSecretValue
+          Resource: 
+            - "arn:aws:secretsmanager:us-east-1:529673395489:secret:JWT_SECRET*"
+            - "arn:aws:secretsmanager:us-east-1:529673395489:secret:jwtSecretDev-EdOsYu"
+            - "arn:aws:secretsmanager:us-east-1:529673395489:secret:jwtSecretDev"
+
+
   httpApi:
-    authorizers:
-      customAuthorizer:
-        type: request
-        functionName: authorizerFunc
-        simpleResponse: true
-        identitySource:
-          - $request.header.Authorization
-          - $request.header.authorization
+#    authorizers:
+#      customAuthorizer:
+#        type: request
+#        functionName: authorizerFunc
+#        simpleResponse: true
+#        identitySource:
+#          - $request.header.Authorization
+#          - $request.header.authorization
 
 
 functions: ${file(./src/serverless-config/dev/functions.yml)}

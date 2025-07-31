@@ -2,12 +2,12 @@ api:
   handler: src/functions/root/root.lambdaHandler
   events:
     - httpApi: '*'
-authorizerFunc:
-  handler: src/functions/authorizer/authorizer.lambdaHandler
-  events:
-    - httpApi:
-        path: /authorizer
-        method: get
+#authorizerFunc:
+#  handler: src/functions/authorizer/authorizer.lambdaHandler
+#  events:
+#    - httpApi:
+#        path: /authorizer
+#        method: get
 hello:
   handler: src/functions/hello/hello.lambdaHandler
   events:
@@ -21,8 +21,8 @@ posts:
     - httpApi:
         path: /posts
         method: get
-        authorizer:
-          name: customAuthorizer
+        #authorizer:
+        #  name: customAuthorizer
 getPostById:
   handler: src/functions/posts/getPostById.lambdaHandler
   events:
