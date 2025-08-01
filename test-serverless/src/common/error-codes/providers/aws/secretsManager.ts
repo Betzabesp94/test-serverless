@@ -50,14 +50,10 @@ import {
       if (response.SecretString === undefined) {
         throw new Error('Not process.envured secret');
       }
-      
-      // Parse the JSON string and extract the value
       try {
-        const secretObject = JSON.parse(response.SecretString);
-        const secretValue = Object.values(secretObject)[0];
-        return secretValue as string;
-      } catch (parseError) {
-        // If it's not JSON, return the raw string
+        return JSON.parse(response.SecretString);
+      } catch (error) {
+        // Fallback to original value if JSON parsing fails
         return response.SecretString;
       }
     } catch (error) {

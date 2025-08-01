@@ -18,9 +18,7 @@ provider:
           Action:
             - secretsmanager:GetSecretValue
           Resource: 
-            - "arn:aws:secretsmanager:us-east-1:529673395489:secret:JWT_SECRET*"
-            - "arn:aws:secretsmanager:us-east-1:529673395489:secret:jwtSecretDev-EdOsYu"
-            - "arn:aws:secretsmanager:us-east-1:529673395489:secret:jwtSecretDev"
+            - "arn:aws:secretsmanager:us-east-1:529673395489:secret:jwtSecretDevTest-M0UW9f"
 
 
   httpApi:
